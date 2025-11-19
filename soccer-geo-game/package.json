@@ -1,0 +1,19 @@
+{
+  "name": "soccer-geo-game",
+  "version": "1.0.0",
+  "description": "A real-world location-based virtual soccer game",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["soccer", "geolocation", "game", "multiplayer"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1",
+    "uuid": "^13.0.0"
+  }
+}

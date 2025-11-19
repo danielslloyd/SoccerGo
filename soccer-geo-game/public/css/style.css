@@ -1,0 +1,520 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: #1a1a2e;
+    color: #eee;
+    min-height: 100vh;
+}
+
+/* Container styles */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #4ecca3;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #888;
+}
+
+/* Main content layout */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 20px;
+    height: calc(100vh - 150px);
+}
+
+/* Map container */
+#map-container {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    background: #232344;
+}
+
+.map-instructions {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 12px 24px;
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+.map-instructions p {
+    font-size: 0.9rem;
+}
+
+/* Sidebar */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.config-section,
+.info-section {
+    background: #232344;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.config-section h3,
+.info-section h4 {
+    color: #4ecca3;
+    margin-bottom: 15px;
+}
+
+/* Form elements */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.form-group input[type="number"],
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #3a3a5c;
+    border-radius: 6px;
+    background: #1a1a2e;
+    color: #eee;
+    font-size: 1rem;
+}
+
+.form-group input[type="range"] {
+    width: calc(100% - 50px);
+    vertical-align: middle;
+}
+
+#ballSpeedValue {
+    display: inline-block;
+    width: 40px;
+    text-align: right;
+}
+
+#cornersList {
+    background: #1a1a2e;
+    border-radius: 6px;
+    padding: 10px;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+#cornersList .corner-item {
+    font-size: 0.85rem;
+    padding: 4px 0;
+    color: #4ecca3;
+}
+
+#cornersList .empty-state {
+    color: #666;
+    font-style: italic;
+    font-size: 0.85rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 600;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: #4ecca3;
+    color: #1a1a2e;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #45b393;
+}
+
+.btn-secondary {
+    background: #3a3a5c;
+    color: #eee;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: #4a4a6c;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.button-group .btn {
+    flex: 1;
+}
+
+/* Info section */
+.info-section ol {
+    padding-left: 20px;
+}
+
+.info-section li {
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: #232344;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-content h2 {
+    color: #4ecca3;
+    margin-bottom: 20px;
+}
+
+.invite-link {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.invite-link input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #3a3a5c;
+    border-radius: 6px;
+    background: #1a1a2e;
+    color: #eee;
+    font-size: 0.9rem;
+}
+
+/* Game page styles */
+.game-container {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+#game-map {
+    height: 100%;
+    width: 100%;
+}
+
+/* Game HUD */
+.game-hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.scoreboard {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px 25px;
+    border-radius: 12px;
+    pointer-events: auto;
+}
+
+.team {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.team-name {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.team-score {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.team1 .team-score {
+    color: #ff6b6b;
+}
+
+.team2 .team-score {
+    color: #4dabf7;
+}
+
+.timer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4ecca3;
+    padding: 0 20px;
+}
+
+.player-info {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 15px;
+    border-radius: 8px;
+    pointer-events: auto;
+}
+
+.player-info span {
+    margin: 0 5px;
+}
+
+#playerTeam {
+    font-weight: bold;
+}
+
+/* Game controls */
+.game-controls {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.btn-kick {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #4ecca3;
+    color: #1a1a2e;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 4px 20px rgba(78, 204, 163, 0.4);
+}
+
+.btn-kick:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(78, 204, 163, 0.6);
+}
+
+.btn-kick:active {
+    transform: scale(0.95);
+}
+
+/* Game sidebar */
+.game-sidebar {
+    position: absolute;
+    top: 80px;
+    right: 15px;
+    width: 250px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 12px;
+    z-index: 1000;
+}
+
+.game-sidebar h3 {
+    color: #4ecca3;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+#playersList {
+    max-height: 150px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+.player-item {
+    padding: 5px 0;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.player-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.team1-dot {
+    background: #ff6b6b;
+}
+
+.team2-dot {
+    background: #4dabf7;
+}
+
+.game-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.game-actions .btn {
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.distance-info {
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+.distance-info p {
+    margin-bottom: 5px;
+}
+
+#kickStatus {
+    color: #ff6b6b;
+}
+
+#kickStatus.can-kick {
+    color: #4ecca3;
+}
+
+/* Goal celebration */
+.goal-celebration h2 {
+    font-size: 3rem;
+    animation: pulse 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+/* Final score */
+.final-score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+    font-size: 1.5rem;
+}
+
+.team1-final {
+    color: #ff6b6b;
+}
+
+.team2-final {
+    color: #4dabf7;
+}
+
+.vs {
+    color: #666;
+}
+
+#winnerText {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .main-content {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    #map-container {
+        height: 50vh;
+    }
+
+    .game-sidebar {
+        display: none;
+    }
+}
+
+/* Custom Leaflet marker styles */
+.ball-marker {
+    background: #fff;
+    border-radius: 50%;
+    border: 3px solid #000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.player-marker {
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.team1-marker {
+    background: #ff6b6b;
+}
+
+.team2-marker {
+    background: #4dabf7;
+}
+
+.goal-area {
+    fill: rgba(255, 255, 255, 0.3);
+    stroke: #fff;
+    stroke-width: 2;
+}

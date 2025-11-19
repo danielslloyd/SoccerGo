@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soccer Geo Game - Create Game</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Soccer Geo Game</h1>
+            <p>Create a virtual soccer field anywhere in the world!</p>
+        </header>
+
+        <div class="main-content">
+            <div id="map-container">
+                <div id="map"></div>
+                <div class="map-instructions">
+                    <p id="instruction-text">Click on the map to place the first corner of your field</p>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="config-section">
+                    <h3>Game Configuration</h3>
+
+                    <div class="form-group">
+                        <label for="timeLimit">Game Duration (minutes)</label>
+                        <input type="number" id="timeLimit" value="10" min="1" max="120">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ballSpeed">Ball Speed Multiplier</label>
+                        <input type="range" id="ballSpeed" min="0.5" max="3" step="0.1" value="1">
+                        <span id="ballSpeedValue">1.0x</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Field Corners</label>
+                        <div id="cornersList">
+                            <p class="empty-state">No corners placed yet</p>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="clearBtn" class="btn btn-secondary" disabled>Clear Field</button>
+                        <button id="createBtn" class="btn btn-primary" disabled>Create Game</button>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h4>How to Draw Your Field</h4>
+                    <ol>
+                        <li>Click 4 points to define the rectangle corners</li>
+                        <li>Aspect ratio should be between 2:3 and 1:2</li>
+                        <li>The longer sides will have goals</li>
+                        <li>Goals take up 1/4 of each end width</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Game Created!</h2>
+                <p>Share this link with your friends to join:</p>
+                <div class="invite-link">
+                    <input type="text" id="inviteUrl" readonly>
+                    <button id="copyBtn" class="btn btn-primary">Copy</button>
+                </div>
+                <button id="goToGameBtn" class="btn btn-primary">Go to Game</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

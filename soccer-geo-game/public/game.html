@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soccer Geo Game - Play</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div id="game-map"></div>
+
+        <div class="game-hud">
+            <div class="scoreboard">
+                <div class="team team1">
+                    <span class="team-name">Team 1</span>
+                    <span class="team-score" id="score1">0</span>
+                </div>
+                <div class="timer" id="timer">10:00</div>
+                <div class="team team2">
+                    <span class="team-score" id="score2">0</span>
+                    <span class="team-name">Team 2</span>
+                </div>
+            </div>
+
+            <div class="player-info">
+                <span id="playerTeam">Team ?</span>
+                <span id="playerName">Player</span>
+            </div>
+        </div>
+
+        <div class="game-controls">
+            <button id="kickBtn" class="btn btn-kick">KICK</button>
+        </div>
+
+        <div class="game-sidebar">
+            <h3>Players</h3>
+            <div id="playersList"></div>
+
+            <div class="game-actions">
+                <button id="startBtn" class="btn btn-primary">Start Game</button>
+                <button id="shareBtn" class="btn btn-secondary">Share Link</button>
+            </div>
+
+            <div class="distance-info">
+                <p>Distance to ball: <span id="ballDistance">--</span>m</p>
+                <p id="kickStatus">Move closer to kick!</p>
+            </div>
+        </div>
+
+        <div id="joinModal" class="modal">
+            <div class="modal-content">
+                <h2>Join Game</h2>
+                <div class="form-group">
+                    <label for="playerNameInput">Your Name</label>
+                    <input type="text" id="playerNameInput" placeholder="Enter your name" maxlength="20">
+                </div>
+                <button id="joinBtn" class="btn btn-primary">Join Game</button>
+            </div>
+        </div>
+
+        <div id="goalModal" class="modal hidden">
+            <div class="modal-content goal-celebration">
+                <h2>GOAL!</h2>
+                <p id="goalText">Team 1 scores!</p>
+            </div>
+        </div>
+
+        <div id="gameOverModal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Game Over!</h2>
+                <div class="final-score">
+                    <span class="team1-final">Team 1: <span id="final1">0</span></span>
+                    <span class="vs">vs</span>
+                    <span class="team2-final">Team 2: <span id="final2">0</span></span>
+                </div>
+                <p id="winnerText"></p>
+                <button onclick="location.href='/'" class="btn btn-primary">Create New Game</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/game.js"></script>
+</body>
+</html>
